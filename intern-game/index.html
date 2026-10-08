@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>내가 무역 좀 하면 안되냐</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app">
+  <header class="hud">
+    <div class="brand">인턴<small>외자구매팀 · SCM 온보딩</small></div>
+    <div class="meter"><div class="lbl"><span>멘탈 HP</span><b id="hpTxt">100 / 100</b></div><div class="bar"><i id="hpFill"></i></div></div>
+    <div class="meter"><div class="lbl"><span id="rankTxt">Lv.1 인턴</span><b id="xpTxt">0 XP</b></div><div class="bar"><i id="xpFill"></i></div></div>
+    <button class="dex-btn" id="homeBtn" type="button" aria-label="타이틀 화면으로">⌂ 처음으로</button>
+    <button class="dex-btn" id="bgmBtn" type="button" aria-pressed="true" aria-label="배경음악 켜기/끄기">♪ BGM <span id="bgmState">ON</span></button>
+    <button class="dex-btn" id="dexBtn" type="button" aria-label="SCM 용어 도감 열기">SCM 도감 <span id="dexCount">0/8</span></button>
+    <div class="pips" id="pips" aria-label="스테이지 진행도"></div>
+  </header>
+
+  <section class="scene" id="scene" aria-live="polite">
+    <div class="portraits" id="portraits"><!-- js/ui/portraits.js 가 data/characters.js 기준으로 채움 --></div>
+    <div class="flash" id="flash"></div>
+    <div class="loc" id="loc" hidden><span id="locPlace"></span><span class="t" id="locTime"></span></div>
+
+    <div class="bottom">
+      <div class="choices" id="choices" hidden></div>
+      <div class="dialog" id="dialog" hidden>
+        <div class="tag" id="tag">한지윤 과장</div>
+        <div class="text" id="text"></div>
+        <div class="next" id="next" aria-hidden="true">▶▶</div>
+        <button class="back-btn" id="backBtn" type="button" aria-label="이전 대사로 돌아가기">◀ 뒤로</button>
+      </div>
+    </div>
+
+    <div class="stamp" id="stamp"></div>
+    <div class="banner" id="banner"><div class="in"><div class="k" id="bK"></div><h2 id="bT"></h2><div class="c" id="bC"></div></div></div>
+
+    <div class="title-screen" id="titleScreen">
+      <img class="poster" src="assets/images/title-poster.jpg" alt="인턴 타이틀 포스터">
+      <div class="title-foot">
+        <button class="big-btn start-btn" id="startBtn" type="button">▶ 시작</button>
+        <p class="hint">♪ 시작하면 배경음악이 재생됩니다 · 클릭 또는 Space로 대화 넘기기 · 숫자 1·2·3으로 선택</p>
+      </div>
+    </div>
+
+    <div class="overlay over" id="overScreen" hidden>
+      <div class="fail-stamp">재계약 실패</div>
+      <p class="hint" style="color:#ffd0d6">인사팀 면담 결과: 인턴 계약 만료</p>
+      <button class="big-btn" id="retryBtn" type="button">다시 출근하기</button>
+    </div>
+  </section>
+  <p class="help">대화창을 눌러 진행하세요. ◀ 뒤로(또는 ← 키)로 이전 대사를 다시 볼 수 있습니다. 상단 SCM 도감에서 획득한 용어를 언제든 다시 볼 수 있습니다.</p>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="SCM 용어 도감">
+  <header><h3>SCM 용어 도감<span id="dexCount2">0/8</span></h3><button class="x" id="dexClose" type="button" aria-label="도감 닫기">✕</button></header>
+  <ul class="dex" id="dexList"></ul>
+</aside>
+
+<div class="toast" id="toast" role="status"><div class="k">도감 등록!</div><div class="nm" id="toastName"></div><p id="toastDef"></p></div>
+<div class="cert-wrap" id="certWrap" hidden></div>
+<canvas id="confetti" hidden></canvas>
+<audio id="bgm" src="assets/audio/bgm.mp3" loop preload="auto"></audio>
+
+<!-- 1) 데이터 → 2) 코어 → 3) UI → 4) 게임 흐름 → 5) 시작. 순서를 바꾸지 마세요. -->
+<script src="js/data/config.js"></script>
+<script src="js/data/characters.js"></script>
+<script src="js/data/terms.js"></script>
+<script src="js/data/story.js"></script>
+<script src="js/data/stages.js"></script>
+<script src="js/core/dom.js"></script>
+<script src="js/core/state.js"></script>
+<script src="js/ui/portraits.js"></script>
+<script src="js/core/dialogue.js"></script>
+<script src="js/ui/hud.js"></script>
+<script src="js/ui/effects.js"></script>
+<script src="js/ui/glossary.js"></script>
+<script src="js/ui/certificate.js"></script>
+<script src="js/ui/audio.js"></script>
+<script src="js/game.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
